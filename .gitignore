@@ -1,0 +1,11 @@
+# Raw datasets — these are large, publicly re-downloadable, and shouldn't bloat the repo
+slpdb_data/
+*.edf
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS junk
+.DS_Store
+Thumbs.db
