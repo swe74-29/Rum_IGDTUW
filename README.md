@@ -35,12 +35,27 @@ The system predicts apnea/hypopnea events from short signal windows and combines
 4. **Fusion:** Static EHR risk score (rule-weighted from comorbidities) is combined with the dynamic model's real-time event probability into a single fused risk output, feeding a conceptual dashboard flag (LOW / MODERATE / HIGH).
 
 ## Results
-- Leave-One-Group-Out ROC-AUC ranged from ~0.6–0.78 across held-out patients (excluding one healthy control with no positive events to score against).
+
+All results use Leave-One-Group-Out cross-validation (one full patient held out per fold) on 15 subjects with a consistent nasal-airflow respiration channel (13 scoreable; the 2 healthy controls have no positive events to score against).
+
+| Task | Features | Mean ROC-AUC |
+|---|---|---|
+| Detect event in current 30s window | ECG + respiration (time- and frequency-domain HRV, breath rate/amplitude) | 0.687 (range 0.56–0.83) |
+| Predict event within next ~90s (all windows) | Same | 0.722 |
+| Predict event within next ~90s, from currently-normal windows only | Same | **0.658** |
+| Same onset-only task, 4 subjects with SpO2 | Without SpO2 | 0.660 |
+| Same onset-only task, 4 subjects with SpO2 | With SpO2 | **0.730** |
+
+**Why the onset-only number is the headline early-warning result:** apnea events cluster, so a naive "current label predicts future label" baseline scores 0.776, higher than our all-window predictive AUC of 0.722. The 0.658 onset-only figure removes that shortcut by testing only windows that are currently normal.
+
+**SpO2:** adding oxygen saturation improved every held-out subject (mean onset-only AUC 0.660 to 0.730), suggesting oximetry-equipped wearables would materially improve early warning.
 
 ## Limitations & Future Work
-- One held-out subject (`slp01a`) showed degraded performance, traced to a genuine physiological cause: this subject's respiration was recorded via a chest/abdominal "effort" channel rather than nasal airflow, which can behave differently during central apnea events. Future work would standardize respiration channel type across all training subjects, or train channel-aware sub-models.
-- Only 5 subjects were used for the working prototype due to time constraints; the same pipeline scales directly to the remaining 13 open-access subjects in the database.
-- Static (synthetic) and dynamic (real, anonymized) data streams cannot be linked at the individual level due to privacy constraints, so fusion is performed at the risk-score level rather than a direct per-patient join — a limitation inherent to any privacy-compliant digital twin built on separate real and synthetic sources.
+- Modest absolute performance (AUC ~0.66 onset-only); 30-second windows are short for frequency-domain HRV, which conventionally uses 2–5 minutes.
+- The SpO2 experiment covers only 4 severe-apnea subjects and no controls. Because events cluster, SpO2 in "normal" windows may partly reflect recovery from a preceding event.
+- The base model uses 15 of the 18 available subjects; 3 lack a nasal airflow channel. Mixing respiration channel types degraded performance in early experiments (effort-based vs airflow signals differ physiologically).
+- Static (synthetic EHR) and dynamic (real, anonymized) data cannot be linked per-patient, so fusion happens at the risk-score level, not via a patient-level join.
+- Future work: longer windows, sequence models (LSTM/1D-CNN) on raw signals, a larger and more diverse cohort, and prospective wearable validation.
 
 ## Open-Source License
 [MIT License / Apache 2.0 — pick one and add a LICENSE file]
