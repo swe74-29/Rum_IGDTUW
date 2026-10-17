@@ -23,7 +23,7 @@ to estimate, window by window, the risk that an apnea/hypopnea event is about to
  (ECG + nasal airflow)     (labels: expert-scored apnea/hypopnea)     (risk score, event within ~90 s)
 ```
 
-Architecture diagram (PDF/PPT): [link]
+Architecture diagram: [osa_architecture.pptx](osa_architecture.pptx) ([PDF version](osa_architecture.pdf))
 
 ## Datasets (open-access, no request or credentialing)
 | Source | Use |
@@ -124,5 +124,5 @@ MIT — see [LICENSE](LICENSE)
 
 ## Submission Materials
 - Demo video (20+ min): [link]
-- Architecture diagram: [link]
+- Architecture diagram: [osa_architecture.pptx](osa_architecture.pptx)
 - Presentation: [link]
