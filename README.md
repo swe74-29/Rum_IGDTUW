@@ -125,4 +125,4 @@ MIT — see [LICENSE](LICENSE)
 ## Submission Materials
 - Demo video (20+ min): [link]
 - Architecture diagram: [osa_architecture.pptx](osa_architecture.pptx)
-- Presentation: [link]
+- Presentation: [osa_presentation.pptx](osa_presentation.pptx)
