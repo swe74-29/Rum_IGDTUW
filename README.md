@@ -1,18 +1,31 @@
 # Rum: OSA Digital Twin
 
-Predicting obstructive sleep apnea (OSA) events by fusing a synthetic EHR risk profile with wearable-style physiological signals.
+**Project Title:** OSA Digital Twin: Predicting Obstructive Sleep Apnea Events by Fusing a Synthetic EHR with Wearable-Style Signals
 
-## Team
+## Team Details
 - **Team name:** Rum
-- **Team leader:** Sweta Halder | **College:** IGDTUW | **Team size:** 1 (solo)
-- **Contact:** swetahalder29@gmail.com | 8810584575
+- **Team leader:** Sweta Halder
+- **Team size:** 1 (solo)
+- **Email:** swetahalder29@gmail.com | **Phone:** 8810584575
 
-## Problem Statement and Use Case
-OSA is a common, badly underdiagnosed condition in India, closely tied to obesity, hypertension and type 2 diabetes. Diagnosis needs an overnight sleep-lab study that most patients never get. This project is a proof-of-concept Digital Twin: a virtual patient that combines
-- **static data:** a synthetic EHR (comorbidities such as obesity, hypertension, diabetes), and
-- **dynamic data:** overnight ECG and respiration signals (wearable-style, from real anonymized recordings),
+## College / Incubator Information
+- **College:** Indira Gandhi Delhi Technical University for Women
+- **Incubator:** None
 
-to estimate, window by window, the risk that an apnea/hypopnea event is about to occur, and to present a doctor with a single fused risk flag.
+## Problem Statement
+OSA is a common, badly underdiagnosed condition in India, closely tied to obesity, hypertension and type 2 diabetes. Confirming it normally needs an overnight sleep-lab study that most patients never get, so many people go undiagnosed.
+
+## Healthcare Use Case
+A proof-of-concept Digital Twin that fuses a synthetic EHR risk profile (static) with overnight ECG and respiration signals (dynamic) to estimate, window by window, the risk that an apnea/hypopnea event is about to occur, and to give a clinician a single LOW / MODERATE / HIGH flag.
+
+## AI/ML Model and Framework Details
+- **Model:** XGBoost gradient-boosted classifier (`n_estimators=300, max_depth=3, learning_rate=0.1`), class-weighted.
+- **Task:** predict whether an apnea/hypopnea event occurs within the next ~90 seconds from the current 30-second window.
+- **Inputs:** 12 features: heart rate, RR variability (SDNN), LF/HF HRV, breath rate, breath-interval variability and breath amplitude.
+- **Validation:** leave-one-patient-out cross-validation; causal 3-minute smoothing; thresholds set from out-of-fold predictions.
+- **Static layer:** rule-weighted comorbidity score from Synthea records, converted to a cohort percentile.
+- **Fusion:** `risk = 0.3 × static + 0.7 × dynamic` (hand-set, illustrative).
+- **Frameworks:** scikit-learn, XGBoost, SciPy, wfdb.
 
 ## Architecture
 
