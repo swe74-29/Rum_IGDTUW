@@ -109,7 +109,7 @@ Smoothing improved every metric simultaneously versus the unsmoothed score (e.g.
 **Fusion demonstration (`fusion_demo.png`, and interactively in `dashboard/`):** On the same held-out recording (slp16, 51 events/hr), a synthetic patient at the 89th percentile of EHR risk was flagged HIGH on 46% of windows, versus 8% for a patient at the 23rd percentile — showing the static risk layer meaningfully shifts clinical urgency even when the underlying physiological signal is identical.
 
 ## Conceptual Dashboard
-`dashboard/index.html` — a patient list ranked by overnight fused risk, with a detail view showing each patient's EHR risk tags and their fused risk timeline, recomputed live from the shared demo recording. Switching between patients demonstrates the fusion effect directly: identical physiological signal, different urgency, driven by the static risk layer. [Add screenshot]
+`dashboard/index.html` — a patient list ranked by overnight fused risk, with a detail view showing each patient's EHR risk tags and their fused risk timeline, recomputed live from the shared demo recording. Switching between patients demonstrates the fusion effect directly: identical physiological signal, different urgency, driven by the static risk layer.
 
 ## Limitations and Future Work
 - Modest absolute performance (onset-only AUC around 0.66). 30-second windows are short for frequency-domain HRV, which conventionally uses 2 to 5 minutes.
@@ -123,6 +123,6 @@ Smoothing improved every metric simultaneously versus the unsmoothed score (e.g.
 MIT — see [LICENSE](LICENSE)
 
 ## Submission Materials
-- Demo video (20+ min): [link]
+- Demo video (20+ min): https://youtu.be/lCJ-dsGSoqc
 - Architecture diagram: [osa_architecture.pptx](osa_architecture.pptx)
 - Presentation: [osa_presentation.pptx](osa_presentation.pptx)
