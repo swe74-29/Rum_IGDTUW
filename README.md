@@ -136,6 +136,6 @@ Smoothing improved every metric simultaneously versus the unsmoothed score (e.g.
 MIT — see [LICENSE](LICENSE)
 
 ## Submission Materials
-- Demo video (20+ min): https://youtu.be/lCJ-dsGSoqc
+- Demo video (20 min): https://youtu.be/lCJ-dsGSoqc
 - Architecture diagram: [osa_architecture.pptx](osa_architecture.pptx)
 - Presentation: [osa_presentation.pptx](osa_presentation.pptx)
