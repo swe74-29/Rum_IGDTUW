@@ -6,7 +6,7 @@
 - **Team name:** Rum
 - **Team leader:** Sweta Halder
 - **Team size:** 1 (solo)
-- **Email:** swetahalder29@gmail.com | **Phone:** 8810584575
+- **Email:** swetahalder29@gmail.com
 
 ## College / Incubator Information
 - **College:** Indira Gandhi Delhi Technical University for Women
